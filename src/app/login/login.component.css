@@ -1,0 +1,25 @@
+.login-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(45deg, #fc5c7c7a, #6a82fb88), url(/assets/imgs/login.jpg) center center;
+    background-size: cover;
+}
+
+.login-container mat-card {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.login-container h2 {
+    text-transform: uppercase;
+    letter-spacing: 8px;
+    opacity: 0.7;
+    text-align: center;
+    font-size: 3em;
+    padding: 0 16px;
+}
+
+.btn-container {
+    margin: 8px 0;
+}

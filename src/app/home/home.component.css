@@ -1,0 +1,115 @@
+::ng-deep nav {
+    position: fixed;
+    z-index: 3;
+}
+
+::ng-deep .side-nav {
+    min-height: 100%;
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 1)), url(/assets/imgs/sidenav.jpg);
+    background-size: cover;
+    background-position: center center;
+}
+
+::ng-deep .side-nav li * {
+    transition: 0s !important;
+}
+
+.nav-active {
+    background-color: var(--primary-color) !important;
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, .14), 0 7px 10px -5px rgba(156, 39, 176, .4);
+    color: white !important;
+}
+
+.nav-active * {
+    color: white !important;
+}
+
+.maincontent {
+    padding-left: 300px;
+    padding-top: 64px;
+    height: 100%;
+    overflow: scroll;
+}
+
+@media only screen and (max-width: 992px) {
+    .maincontent {
+        padding-left: 0;
+    }
+}
+
+.chat-btn {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+}
+
+.btn.btn-flat:hover {
+    background: transparent;
+}
+
+.nav-child:hover {
+    background: rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+}
+
+.nav-child {
+    display: flex;
+    align-items: center;
+}
+
+.nav-child i {
+    padding: 0 16px;
+}
+
+.nav-has-child {
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-valign {
+    display: flex;
+    align-items: center;
+}
+
+.btn-nav {
+    margin: 0 !important;
+    padding: 0 1.5em !important;
+    opacity: 0.8;
+}
+
+.nav-breadcrumb {
+    padding: 0 16px;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 2px;
+    opacity: 0.8;
+}
+
+.notification-count {
+    position: relative;
+}
+
+.notification-count span {
+    position: absolute;
+    top: 0;
+    color: white;
+    background: red;
+    height: 18px;
+    width: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    right: 8px;
+    font-size: 0.8em;
+}
+
+.noti-content {
+    display: inline-block;
+    margin-left: 16px;
+}
+
+.noti-content span {
+    font-size: 0.8em;
+}

@@ -1,0 +1,70 @@
+<mz-navbar [navbarClass]="'white'">
+	<mz-navbar-item-container [align]="'left'" class="nav-header">
+		<mz-navbar-item>
+			<button mz-button id="btn-sidenav-demo" class="hide-on-large-only" [flat]="true">
+				<i mz-icon-mdi [icon]="'menu'" class="grey-text text-darken-3">
+				</i>
+			</button>
+		</mz-navbar-item>
+		<mz-navbar-item>
+			<div class="black-text nav-breadcrumb hide-on-med-and-down">
+				Home
+			</div>
+		</mz-navbar-item>
+	</mz-navbar-item-container>
+	<mz-navbar-item-container [align]="'right'">
+		<mz-navbar-item>
+			<a href="#" class="btn btn-flat btn-nav" id="profile-dropdown-btn">
+				<i mz-icon-mdi [icon]="'account'" class="grey-text text-darken-3"></i>
+			</a>
+		</mz-navbar-item>
+	</mz-navbar-item-container>
+
+	<!-- <mz-progress [backgroundClass]="'blue-grey lighten-4'" [progressClass]="'blue-grey'" *ngIf="loader">
+	</mz-progress> -->
+</mz-navbar>
+
+<mz-dropdown [id]="'profile-dropdown'" [align]="'left'" [belowOrigin]="true" [constrainWidth]="false"
+ [dropdownButtonId]="'profile-dropdown-btn'" [gutter]="10" [hover]="false" [inDuration]="300" [outDuration]="300"
+ [stopPropagation]="false">
+	<mz-dropdown-item (click)="signOut()">
+		<a class="grey-text text-darken-2">
+			<i mz-icon-mdi [icon]="'logout-variant'"></i>
+			Logout
+		</a>
+	</mz-dropdown-item>
+</mz-dropdown>
+<mz-sidenav [id]="'sidenav-demo'" [collapseButtonId]="'btn-sidenav-demo'" [fixed]="true" [backgroundClass]="'white'"
+ #sidenav>
+	<mz-sidenav-header>
+		<div class="uitm-logo">
+			<h5 class="center-align grey-text text-darken-2" style="letter-spacing: 0.4em;">CRYPT STORAGE</h5>
+		</div>
+	</mz-sidenav-header>
+	<mz-sidenav-divider></mz-sidenav-divider>
+
+	<ul class="collapsible">
+		<li>
+			<div class="collapsible-header" [routerLink]="'/'" routerLinkActive="nav-active">
+				<i mz-icon-mdi [icon]="'folder'" class="grey-text text-darken-1"></i> My Storage
+			</div>
+		</li>
+		<li>
+			<div class="collapsible-header" routerLinkActive="nav-active">
+				<i mz-icon-mdi [icon]="'cloud'" class="grey-text text-darken-1"></i>
+				<div style="width: 100%" *ngIf="user">
+					Storage
+					<mz-progress [backgroundClass]="'amber lighten-4'" [percentage]="user.totalused / 3000000000 * 100"
+					 [progressClass]="'amber'"></mz-progress>
+					{{user.totalused | fileSize}} of 3 GB used
+				</div>
+			</div>
+		</li>
+	</ul>
+</mz-sidenav>
+
+<main class="grey lighten-3 maincontent">
+	<div style="position: relative; height: 100%; width: 100%">
+		<router-outlet #route="outlet"></router-outlet>
+	</div>
+</main>

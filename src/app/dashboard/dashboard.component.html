@@ -1,0 +1,100 @@
+<div class="row">
+	<div class="col s12">
+		<!-- Uploading loader card -->
+		<div class="card" *ngIf="percentage | async as pct">
+			<div class="card-header">
+				<h4>Uploading...</h4>
+			</div>
+			<div class="card-content">
+				<mz-progress [backgroundClass]="'blue lighten-4'" [percentage]="pct" [progressClass]="'blue'">
+				</mz-progress>
+				<div *ngIf="snapshot | async as snap">
+					{{ snap.bytesTransferred | fileSize }} of {{ snap.totalBytes | fileSize }}
+				</div>
+			</div>
+		</div>
+
+		<!-- Downloading loader card -->
+		<ng-container *ngIf="percentageDownload | async as pct">
+			<div class="card" *ngIf="pct > 0">
+				<div class="card-header">
+					<h4>Downloading...</h4>
+				</div>
+				<div class="card-content">
+					<mz-progress [backgroundClass]="'blue lighten-4'" [percentage]="pct" [progressClass]="'blue'">
+					</mz-progress>
+					<!-- <div *ngIf="snapshot | async as snap">
+					{{ snap.bytesTransferred | fileSize }} of {{ snap.totalBytes | fileSize }}
+				</div> -->
+				</div>
+			</div>
+		</ng-container>
+
+		<!-- File List card -->
+		<div class="card" dropZone (hovered)="toggleHover($event)" (dropped)="startUpload($event)" [class.hovering]="isHovering">
+			<mz-progress [backgroundClass]="'amber lighten-4 card-loader'" [progressClass]="'amber'" *ngIf="searchLoader"></mz-progress>
+			<div class="card-header">
+				<div>
+					<h4>My Storage</h4>
+					<p class="text-warning"> Only a maximum of 10MB file size is allowed per upload!</p>
+				</div>
+				<div>
+					<input type="file" #fileInput [hidden]="true" (change)="startUpload($event.target.files)">
+					<button mz-button class="blue-grey darken-3" (click)="fileInput.click()">
+						Upload
+						<i mz-icon-mdi [icon]="'upload'" [align]="'right'"></i>
+					</button>
+				</div>
+			</div>
+			<div class="card-content">
+				<div>
+					<form [formGroup]="searchForm">
+						<mz-input-container>
+							<i mz-icon-mdi mz-input-prefix [icon]="'magnify'" [align]="'left'">
+							</i>
+							<input mz-input [placeholder]="'Search'" type="text" formControlName="search">
+						</mz-input-container>
+					</form>
+				</div>
+				<table>
+					<thead>
+						<tr>
+							<th>File Name</th>
+							<th>Size</th>
+							<th>Uploded Date/Time</th>
+							<th></th>
+						</tr>
+					</thead>
+
+					<ng-container *ngIf="myFiles$ | async as myFile">
+						<tbody *ngIf="myFile.length > 0; else norecord">
+							<tr *ngFor="let file of myFile">
+								<td>{{file.filename}}</td>
+								<td>{{file.size | fileSize}}</td>
+								<td>{{file.timestamp.toDate() | date: 'dd/MM/yyyy HH:mm a'}}</td>
+								<td>
+									<div class="card-action-btn">
+										<button mz-button class="light-blue" (click)="downloadFile(file)">
+											<i mz-icon-mdi [icon]="'download'" [align]="'center'"></i>
+										</button>
+										<button mz-button class="red" (click)="deleteFile(file)">
+											<i mz-icon-mdi [icon]="'delete'" [align]="'center'"></i>
+										</button>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+						<ng-template #norecord>
+							<tbody>
+								<tr>
+									<td colspan="4" class="center-align">No Files Uploaded Yet</td>
+								</tr>
+							</tbody>
+						</ng-template>
+					</ng-container>
+				</table>
+
+			</div>
+		</div>
+	</div>
+</div>

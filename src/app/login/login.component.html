@@ -1,0 +1,85 @@
+<div class="login-container">
+	<div class="card">
+		<mz-progress [backgroundClass]="'amber lighten-4 card-loader'" [progressClass]="'amber'" *ngIf="loginLoader">
+		</mz-progress>
+		<h2 class="header">CRYPT STORAGE</h2>
+		<div class="card-content">
+			<form [formGroup]="loginForm" (submit)="login()">
+				<mz-input-container>
+					<i mz-icon-mdi mz-input-prefix [icon]="'email'">
+					</i>
+					<input mz-input [label]="'Email'" type="text" autocomplete="off" formControlName="email" [dataError]="getLoginErrorMsg('email')"
+					 [ngClass]="{invalid: email.invalid && (email.touched || loginSubmitted)}">
+				</mz-input-container>
+				<mz-input-container>
+					<i mz-icon-mdi mz-input-prefix [icon]="'lock'">
+					</i>
+					<input mz-input [label]="'Password'" type="password" autocomplete="off" formControlName="password" [dataError]="getLoginErrorMsg('password')"
+					 [ngClass]="{invalid: password.invalid && (password.touched || loginSubmitted)}">
+				</mz-input-container>
+
+				<div class="right-align">
+					<a class="grey-text">Forgot your password?</a>
+				</div>
+
+				<div class="btn-container">
+					<button mz-button class="blue full-width" type="submit">
+						<i mz-icon-mdi [icon]="'email'" [align]="'left'"></i>
+						SIGN IN WITH EMAIL
+					</button>
+				</div>
+			</form>
+			<div class="btn-container">
+				<button mz-button class="google-color full-width" (click)="socialLogin('google')">
+					<i mz-icon-mdi [icon]="'google-plus'" [align]="'left'"></i>
+					SIGN IN WITH GOOGLE
+				</button>
+			</div>
+
+		</div>
+
+		<div class="card-action">
+			<div class="center-align" style="margin-bottom: 16px;">
+				Don't have an account? <a class="btn blue-grey waves-effect waves-light" (click)="signUpModal.openModal()">Sign Up</a>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<!-- Sign Up Modal -->
+<mz-modal #signUpModal [fixedFooter]="true">
+	<mz-modal-header>
+		<mz-progress [backgroundClass]="'amber lighten-4 card-loader'" [progressClass]="'amber'" *ngIf="registerLoader">
+		</mz-progress>
+		<h4>Sign Up</h4>
+	</mz-modal-header>
+	<mz-modal-content>
+		<form [formGroup]="registerForm">
+			<mz-input-container>
+				<input mz-input [label]="'First Name'" type="text" autocomplete="off" formControlName="firstname" [dataError]="getRegisterErrorMsg('firstname')"
+				 [ngClass]="{invalid: regfirstname.invalid && (regfirstname.touched || registerSubmitted)}">
+			</mz-input-container>
+			<mz-input-container>
+				<input mz-input [label]="'Last Name'" type="text" autocomplete="off" formControlName="lastname" [dataError]="getRegisterErrorMsg('lastname')"
+				 [ngClass]="{invalid: reglastname.invalid && (reglastname.touched || registerSubmitted)}">
+			</mz-input-container>
+			<mz-input-container>
+				<input mz-input [label]="'Email'" type="text" autocomplete="off" formControlName="email" [dataError]="getRegisterErrorMsg('email')"
+				 [ngClass]="{invalid: regemail.invalid && (regemail.touched || registerSubmitted)}">
+			</mz-input-container>
+			<mz-input-container>
+				<input mz-input [label]="'Password'" type="password" autocomplete="off" formControlName="password" [dataError]="getRegisterErrorMsg('password')"
+				 [ngClass]="{invalid: regpassword.invalid && (regpassword.touched || registerSubmitted)}">
+			</mz-input-container>
+			<mz-input-container>
+				<input mz-input [label]="'Confirm Password'" type="password" autocomplete="off" formControlName="confpassword"
+				 [dataError]="getRegisterErrorMsg('confpassword')" [ngClass]="{invalid: (regconfpassword.invalid || registerForm.hasError('mismatch')) && (regconfpassword.touched || registerSubmitted)}">
+			</mz-input-container>
+		</form>
+	</mz-modal-content>
+	<mz-modal-footer>
+		<button mz-button [flat]="true" mz-modal-close>Cancel</button>
+		<button mz-button [flat]="true" (click)="register()">Register</button>
+	</mz-modal-footer>
+</mz-modal>

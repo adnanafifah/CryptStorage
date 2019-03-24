@@ -1,0 +1,13 @@
+.hovering {
+    border: 2px solid var(--primary-color);
+}
+
+.text-warning {
+    border: red 1px solid;
+    color: red;
+    padding: 1em;
+    border-radius: 1em;
+    width: 100%;
+    text-align: center;
+    font-weight: 600;
+}

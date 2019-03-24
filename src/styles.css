@@ -1,0 +1,93 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+.center-align {
+    text-align: center;
+}
+
+.right-align {
+    text-align: right;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.google-color {
+    background: #d34836 !important;
+    color: white;
+}
+
+.fb-color {
+    background: #3B5998 !important;
+    color: white;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 16px;
+}
+
+.card-header h4 {
+    opacity: 0.7;
+    text-transform: uppercase;
+}
+
+.card-action-btn {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+:root {
+    --primary-color: #ff8f00;
+}
+
+.input-field input[type=text]:focus,
+.input-field textarea:focus,
+.input-field input[type=password]:focus {
+    border-bottom: 1px solid var(--primary-color) !important;
+    box-shadow: 0 1px 0 0 var(--primary-color) !important;
+}
+
+.input-field label {
+    width: 100%;
+}
+
+.input-field .dropdown-content label {
+    width: unset;
+}
+
+.input-field input[type=text]:disabled {
+    border-bottom: 0px !important;
+    color: black !important;
+}
+
+.input-field input[type=text]:focus+label,
+.input-field input[type=password]:focus+label,
+.input-field textarea:focus+label {
+    color: var(--primary-color) !important;
+}
+
+.input-field .prefix.active {
+    color: var(--primary-color) !important;
+}
+
+input[type=checkbox]:checked+label:before {
+    border-right: 2px solid var(--primary-color) !important;
+    border-bottom: 2px solid var(--primary-color) !important;
+}
+
+.card-loader {
+    position: absolute !important;
+    left: 0;
+    right: 0;
+    top: 0;
+    margin-top: 0 !important;
+}
